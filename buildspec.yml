@@ -3,19 +3,21 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto17
+      nodejs: 16
   pre_build:
     commands:
-      - echo Nothing to do in the pre_build phase...
+      - echo Installing source NPM dependencies...
+      - npm install
+      - npm install -g @angular/cli
   build:
     commands:
       - echo Build started on `date`
-      - mvn install
-      - mvn compile
-      - mvn jib:dockerBuild
+      - ng build --prod --aot
   post_build:
-    commands:
+     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    - target/proxy-0.0.1-SNAPSHOT.jar
+      - '**/*'
+  base-directory: 'dist*'
+  discard-paths: yes
