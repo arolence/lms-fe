@@ -1,8 +1,9 @@
-cd /home/ubuntu/app/herme &&
+cd /home/ubuntu/web/lms-fe &&
+npm install &&
+npm install -g @angular/cli &&
+ng build --configuration production  &&
 
-mvn install &&
-
-mvn jib:dockerBuild &&
+docker build -t user-app:latest . &&
 
 docker-compose up -d
 

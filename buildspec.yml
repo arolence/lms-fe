@@ -1,25 +1,42 @@
 version: 0.2
+# version: 0.2
+os: linux
+files:
+ - source: .
+   destination: /home/ubuntu/web/lms-fe
+hooks:
+  BeforeInstall:
+   - location: scripts/before-install.sh
+     timeout: 300
+  AfterInstall:
+   - location: scripts/after-install.sh
+     timeout: 300
+     runas: root
+  ApplicationStart:
+   - location: scripts/boot.sh
+     timeout: 300
+     runas: root
 
-phases:
-  install:
-    runtime-versions:
-      nodejs: 16
-  pre_build:
-    commands:
-      - echo Installing source NPM dependencies...
-      - npm install
-      - npm install -g @angular/cli
-  build:
-    commands:
-      - echo Build started on `date`
-      - ng build --configuration production 
-      - docker build user-app:latest .
-  post_build:
-     commands:
-      - echo Build completed on `date`
-      - docker-compose up -d
-artifacts:
-  files:
-      - '**/*'
-  base-directory: 'dist*'
-  discard-paths: yes
+#phases:
+#  install:
+#    runtime-versions:
+#      nodejs: 16
+#  pre_build:
+#    commands:
+#      - echo Installing source NPM dependencies...
+#      - npm install
+#      - npm install -g @angular/cli
+#  build:
+#    commands:
+#      - echo Build started on `date`
+#      - ng build --configuration production 
+#      - docker build user-app:latest .
+#  post_build:
+#     commands:
+#      - echo Build completed on `date`
+#      - docker-compose up -d
+#artifacts:
+#  files:
+#      - '**/*'
+#  base-directory: 'dist*'
+#  discard-paths: yes

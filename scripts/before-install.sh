@@ -1,1 +1,1 @@
-rm -rf /home/ubuntu/app/herme
+rm -rf /home/ubuntu/web/lms-fe
