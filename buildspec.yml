@@ -13,9 +13,11 @@ phases:
     commands:
       - echo Build started on `date`
       - ng build --configuration production 
+      - docker build user-app:latest .
   post_build:
      commands:
       - echo Build completed on `date`
+      - docker-compose up -d
 artifacts:
   files:
       - '**/*'
