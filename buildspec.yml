@@ -16,7 +16,12 @@ hooks:
    - location: scripts/boot.sh
      timeout: 300
      runas: root
-
+artifacts:
+  files:
+      - '**/*'
+  base-directory: 'test-app/BuildArtif/*'
+  name: test-app
+  discard-paths: no
 #phases:
 #  install:
 #    runtime-versions:
