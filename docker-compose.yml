@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+
+  user-web-app:
+    image: user-web-app:latest
+    networks:
+      - custom_network
+
+    container_name: user-web-app
+    restart: always
+    volumes:
+      - /home/ubuntu/cert:/home/ubuntu/cert/
+    ports:
+      - 443:443
+
+networks:
+  custom_network:
+    driver: bridge

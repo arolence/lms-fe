@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+files:
+ - source: .
+   destination: /home/ubuntu/app/herme
+hooks:
+  BeforeInstall:
+   - location: scripts/before-install.sh
+     timeout: 300
+  AfterInstall:
+   - location: scripts/after-install.sh
+     timeout: 300
+#     runas: root
+  ApplicationStart:
+   - location: scripts/boot.sh
+     timeout: 300
+#     runas: root
