@@ -2,7 +2,7 @@
 pipeline {
   agent any
   tools {
-    NodeJs 'NodeJs-19.0.0' 
+    NodeJs 'node' 
   }
   stages {
     stage ('Build') {
